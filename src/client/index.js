@@ -1,4 +1,12 @@
 import './styles/styles.scss';
-import { testFunction } from './js/app.js';
+import { getLocation } from './js/app.js';
 
-document.getElementById('submit').addEventListener('click', testFunction);
+function buttonClick () {
+    const location = 'Erie, PA';
+    getLocation(location)
+    .then ((latLong)=> {
+        console.log(latLong);
+    })
+}
+
+document.getElementById('submit').addEventListener('click', buttonClick);
