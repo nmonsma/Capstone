@@ -9,11 +9,23 @@
             <h1>Title</h1>
         </header>
         <main>
-            Main Content
-            <button id="submit">Click Here</button>
+            <section id="input">
+                <input type="text" id="city" placeholder="Where Are You Traveling?">
+                <button id="submit">What Should I Pack?</button>
+            </section>
+            <section id="output">
+                <div id="forecast" class="card"></div>
+                    <div id="forecast-label" class="label">Forecast</div>
+                    <div id="forecast-grid" class="data"></div>
+                <div id="air-quality" class="card">
+                    <div id="aqi-label" class="label">Air Quality</div>
+                    <div id="aqi" class="data"></div>
+                </div>
+                <div id="photo"></div>
+            </section>
         </main>
         <footer>
-            Footer
+            Data provided by OpenCage, WeatherBit, and Pixabay.
         </footer>
 
     </body>
