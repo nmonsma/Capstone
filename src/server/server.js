@@ -29,17 +29,3 @@ app.listen(3000, function () {
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')    
 })
-
-/*External API call*/
-// app.post('/***', async function (request, response){ //TODO: add route name
-//     const apiData = `${request.body.***}`; //TODO: add JSON name
-//     const externalResponse = await fetch(`${apiUrl}&key=${apiKey}&${apiData}`) //TODO: check api info
-//     try {
-//         const data = await externalResponse.json()
-//         response.send(data)
-//     } catch(error) {
-//         console.log(error)
-//     }
-// })
-
-

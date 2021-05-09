@@ -1,11 +1,133 @@
-h1 {
-    background-color: black;
+:root {
+    --box: 50px;
+    --header-color: rgba(0,50,10,1);    
 }
-footer {
-    font-size: 0.5em;
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Reggae+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
 }
+
 body {
+    width: 100vw;
+    height: 100vh;
+    // overflow: hidden;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    font-family: 'Raleway', sans-serif;
+}
+
+header {
+    height: 40px;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    svg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        fill: var(--header-color);
+        stroke-width: 0;
+        width: 100vw;
+        height: 60px;
+        z-index: -10;
+    }
+    h1 {
+        // background-color: black;
+        color: white;
+        font-size: 20px;
+        padding: 10px 10px 10px 8%;
+        font-family: 'Reggae One', serif;
+        text-shadow: -1px 2px 2px black;
+    }
+}
+
+#input {
+    background-color: rgba(200,0,50,0.5);
+    padding-left: 40%;
+    display: flex;
+    flex-direction: column;
+    input {
+        font-size: 16px;
+        width: 200px;
+    }
+    button {
+        margin: 2px;
+        font-size: 20px;
+        width: 200px;
+    }
+    
+}
+
+
+
+#output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .card {
+        margin: 10px;
+        width: 275px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(50,50,50,0.8);
+        border-radius: 5px;  
+    }
+
+    .label {
+        text-align: center;
+        color: white;
+        font-family: 'Reggae One', serif;
+        font-weight: bold;
+        font-size: 1.3em;
+        padding-top: 15px;
+    }
+
+    .precipitation, .wind-speed, .high-temp, .low-temp {
+        height: var(--box);
+        width: var(--box);
+        margin: 2px;
+        border-radius: 2px;
+    }
+    .precipitation {
+        background-color: rgb(200,250,200);
+    }
+    .wind-speed {
+        background-color: rgb(250,200,250);
+    }
+    .high-temp {
+        background-color: rgb(250,200,200);
+    }
+    .low-temp {
+        background-color: rgb(200,200,250);
+    }
+    
+    #forecast-grid {
+        margin: 20px;
+        height: calc(var(--box) * 11);
+        width: calc(var(--box) * 4.4);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    #air-quality {
+        
+    }
+}
+
+footer {
+    background-color: black;
+    color: white;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    font-size: 0.5em;
+    text-align: center;
 }
