@@ -5,8 +5,10 @@ const forecast = async (latitude, longitude) => {
     const forecastUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?';
     //https://www.weatherbit.io/api/weather-forecast-16-day
     //https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
+    //  &lat=38.123&lon=-78.543
 
-    const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=${forecastKey}`);
+    // const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=${forecastKey}`);
+    const response = await fetch(`${forecastUrl}&lat=${latitude}&lon=${longitude}&key=${forecastKey}`);
         try {
             const returned = await response.json();
             return returned.data;
@@ -40,10 +42,18 @@ const getLocation = async (data) => {
     //https://opencagedata.com/api
     //https://api.opencagedata.com/geocode/v1/json?q=PLACENAME&key=5a30cda702464b90a8e4ff72c17f0d2a
 
+    Client.postData('http://localhost:3000/location', { //sends the url to the local server for processing
+        'location': `${data}`
+    })
+    .then ((serverResponse)=> {
+        console.log(serverResponse)
+    })    
+
     const response = await fetch(`${latLongUrl}q=${data}&key=${latLongKey}`);
     if (response.status=='200') { //If the server returns a 200 ("okay") status...
         try {
             const returned = await response.json();
+            console.log(returned);
             return returned.results[0].geometry;  //Return the lat/long object
         }catch(error){
             console.log("error", error);

@@ -12,6 +12,7 @@ app.use(cors());
 const dotenv = require('dotenv');
 dotenv.config();
 const fetch = require('node-fetch');
+//const location = require('./externalAPIs/location.js'); //TODO: Figure out how to inclue the external api calls in other files. Probably have the function in those files, but the app.post here.
 
 /*Global Variables*/
 const apiUrl = `***`; //TODO: add URL

@@ -11,10 +11,10 @@ function createForecast () {
             forecastGrid.appendChild(itemBox);
         };    
     };
+    iterateBuild ('date');  // Add ten "date" paragraphs
     iterateBuild ('high-temp'); // Add ten "high temp" paragraphs
     iterateBuild ('low-temp'); // Add ten "low temp"... and so on
-    iterateBuild ('precipitation');
-    iterateBuild ('wind-speed');    
+    iterateBuild ('precipitation'); 
 }
 
 export { createForecast }

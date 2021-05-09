@@ -4,9 +4,9 @@ import { airQuality } from './js/api.js';
 import { forecast } from './js/api.js';
 import { getPhoto } from './js/api.js';
 import { createForecast } from './js/build.js';
-import { updateAQI } from './js/update.js';
 import { updateForecast } from './js/update.js';
 import { updatePhoto } from './js/update.js';
+import { postData } from './js/postdata.js'
 
 function buttonClick () {
     const location = document.getElementById('city').value;
@@ -25,7 +25,7 @@ function buttonClick () {
         forecast(latLong.lat, latLong.lng)
         .then ((forecastData)=> {
             console.log('Forecast:', forecastData);
-            //TODO: Add display of forecast data
+            updateForecast(forecastData);
         })
     });
     getPhoto(location)
@@ -38,3 +38,11 @@ function buttonClick () {
 /*Main Actions*/
 createForecast();
 document.getElementById('submit').addEventListener('click', buttonClick);
+document.getElementById('city').addEventListener('keyup', function (keypress) { //Cause a kepress on button 13 (Enter) within the 'city' input to trigger a click on the submit button.
+    if (keypress.keyCode === 13) {
+        keypress.preventDefault();
+        document.getElementById('submit').click();
+    }
+});
+
+export { buttonClick }
