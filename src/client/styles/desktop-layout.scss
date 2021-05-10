@@ -22,11 +22,12 @@
 
 /* Layout  */
 body {
-    //background-image: url(../media/diego-passadori-e6frrz-kh-0-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    // background-repeat: repeat;
+    // background-attachment: fixed;
+    background-color: rgb(100,50,50);
+    // background-blend-mode: darken;
 
+    margin: 0;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -34,7 +35,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around;    
+}
+
+footer {
+    z-index: 9;
 }
 
 section {
@@ -72,9 +77,9 @@ article {
 .top {
     position: fixed;
     left: 5%;
-    top: -75%;
+    top: -170px;
     width: 85%;
-    height: 85%;
+    height: 250px;
     transform: rotate(1deg);
     background-color: var(--red);
 
@@ -88,7 +93,7 @@ article {
 }
 
 .top:hover {
-    top: -35%;
+    top: 0;
 }
 
 .left {
@@ -101,7 +106,7 @@ article {
     background-color: var(--blue);
 
     transition: left 1s;
-    z-index: 3;
+    z-index: 2;
 }
 
 .left:hover {
@@ -111,14 +116,21 @@ article {
 .bottom {
     position: fixed;
     left: 0;
-    top: 90%;
+    top: 85%;
     width: 90%;
-    height: 100%;
+    height: calc(65vh + 100px);
     transform: rotate(4deg);
     background-color: var(--orange);
 
     transition: top 1s;
-    z-index: 2;
+    z-index: 3;
+}
+
+#image {
+    width: 90vw;
+    height: 65vh;
+    background-size: cover;
+    margin-bottom: 5vh    
 }
 
 .bottom:hover {

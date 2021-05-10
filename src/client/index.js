@@ -1,7 +1,13 @@
-import './styles/styles.scss';
-import './styles/desk-style.scss';
+//TODO:
+// Import event listener
+// Create test cases
+// Create error handling
+// Optional: Add trip start date and flight data to retrieve flight status and adjust the forecast for the dates of the trip.
+
+import './styles/element-styles.scss';
+import './styles/desktop-layout.scss';
 import { createForecast } from './js/build.js';
-import { buttonClick } from './js/buttonClick.js';
+import { buttonClick } from './js/app.js';
 
 /*Main Actions*/
 createForecast();

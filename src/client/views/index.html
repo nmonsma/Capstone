@@ -12,32 +12,38 @@
         <header>       
             <h1>Let's Plan Your Trip!</h1>
             <input type="text" id="city" placeholder="Where Are You Traveling?">
+            <input type="date" id="date">
             <button id="submit">Start Planning</button>                
         </header>
-        <section class="top">
-            <article id="forecast">
-                <div id="forecast-grid" class="data"></div>                
-                <div id="forecast-label" class="label">Weather</div>
+        <section class="top hidden">
+            <article id="forecast" class="card">
+                <div id="forecast-grid" class="data"></div>                                
+            </article>
+            <div id="forecast-label" class="label">Weather</div>
+        </section>
+        <section class="left hidden">
+            <article id="safety" class="card">
+                <h2>Travel Advisory</h2>
+                <div id="advisory" class="data"></div>
+                <h2>Air Quality</h2>
+                <div id="aqi" class="data"></div>                
+            </article>
+            <div id="safety-label" class="label">Safety</div>
+        </section>
+        <section class="bottom hidden">
+            <div id="photo-label" class="label">Photo</div>
+            <article id="photo" class="card">                
+                <div id="image" class="data"></div>
             </article>
         </section>
-        <section class="left">
-            <div id="air-quality" class="card">
-                <div id="aqi" class="data"></div>
-                <div id="aqi-label" class="label">Air Quality</div>
-            </div>
-        </section>
-        <section class="bottom">
-            <div id="photo, hidden">
-                <div id="photo-label" class="label">Photo</div>
-                <div id="photo" class="data"></div>
-            </div>
-        </section>
-        <section class="right">
-            <div id="poi-label" class="label">Attractions</div>
+        <section class="right hidden">
+            <div id="date-label" class="label">Countdown</div>
+            <article id="date" class="card">                
+                <div id="countdown" class="data"></div>
+            </article>            
         </section>
         <footer>
-            Data provided by OpenCage, WeatherBit, and Pixabay.
+            Data provided by OpenCage, Pixabay, Travel-Advisory.info, and WeatherBit.
         </footer>
-
     </body>
 </html>

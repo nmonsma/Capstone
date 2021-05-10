@@ -1,3 +1,5 @@
+//TODO: Hide API keys from github using .env
+
 /*Express*/
 var path = require('path');
 const express = require('express');
@@ -93,6 +95,23 @@ app.post('/aqi', async function (request, response){
     }
 })
 
+//Travel Advisory
+app.post('/advisory', async function (request, response){
+    //Travel-Advisory.info
+    const advisoryUrl = 'https://www.travel-advisory.info/api?';
+    //https://www.travel-advisory.info/data-api
+    //https://www.travel-advisory.info/api?countrycode=AU    
+    
+    const countryCode = `${request.body.country_code}`;
+    const externalResponse = await fetch(`${advisoryUrl}countrycode=${countryCode}`);
+    try {
+        const advisoryResponse = await externalResponse.json();
+        response.send(advisoryResponse);
+    } catch(error) {
+        console.log(error)
+    }
+})
+
 //Image
 app.post('/image', async function (request, response){
     const requestData = `${request.body.location}`;
@@ -125,23 +144,5 @@ app.post('/image', async function (request, response){
         } catch (error) {
             console.log (error);
         }               
-    }
-})
-
-//Attractions
-app.post('/attractions', async function (request, response){
-    //Microsoft Points of Interest API
-    const poiUrl = 'http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest?';
-    //https://docs.microsoft.com/en-us/bingmaps/spatial-data-services/public-data-sources/pointsofinterest
-    //http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest
-
-    const latitude = `${request.body.lat}`;
-    const longitude = `${request.body.lng}`;
-    const poiMSFT = await fetch(`${apiUrl}&key=${apiKey}&${apiData}`) //TODO: check api info
-    try {
-        const data = await externalResponse.json()
-        response.send(data)
-    } catch(error) {
-        console.log(error)
     }
 })

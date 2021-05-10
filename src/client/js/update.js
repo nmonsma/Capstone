@@ -8,7 +8,7 @@ function updateForecast (forecastData) {
 }
 
 function updatePhoto (url) {
-    document.getElementById('photo').style.backgroundImage = `url('${url}')`;
+    document.getElementById('image').style.backgroundImage = `url('${url}')`;
 }
 
 export { 
