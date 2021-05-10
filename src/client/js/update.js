@@ -12,5 +12,7 @@ function updatePhoto (url) {
     bodyElement.style.backgroundImage = `url('${url}')`;
 }
 
-export { updateForecast }
-export { updatePhoto }
+export { 
+    updateForecast,
+    updatePhoto
+}
