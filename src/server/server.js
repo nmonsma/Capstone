@@ -87,7 +87,6 @@ app.post('/aqi', async function (request, response){
     const weatherbitAqi = await fetch(`${airQualityUrl}lat=${latitude}&lon=${longitude}&key=${airQualityKey}`);
     try {
         const returnedAqi = await weatherbitAqi.json();
-        console.log(returnedAqi);
         response.send(returnedAqi)
     } catch(error) {
         console.log(error)
@@ -131,8 +130,14 @@ app.post('/image', async function (request, response){
 
 //Attractions
 app.post('/attractions', async function (request, response){
-    const apiData = `${request.body.JSONNAME}`; //TODO: add JSON name
-    const externalResponse = await fetch(`${apiUrl}&key=${apiKey}&${apiData}`) //TODO: check api info
+    //Microsoft Points of Interest API
+    const poiUrl = 'http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest?';
+    //https://docs.microsoft.com/en-us/bingmaps/spatial-data-services/public-data-sources/pointsofinterest
+    //http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest
+
+    const latitude = `${request.body.lat}`;
+    const longitude = `${request.body.lng}`;
+    const poiMSFT = await fetch(`${apiUrl}&key=${apiKey}&${apiData}`) //TODO: check api info
     try {
         const data = await externalResponse.json()
         response.send(data)

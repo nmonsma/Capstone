@@ -10,24 +10,31 @@
     </head>
     <body>
         <header>       
-            <h1>Get Ready to Travel!</h1>
+            <h1>Let's Plan Your Trip!</h1>
+            <input type="text" id="city" placeholder="Where Are You Traveling?">
+            <button id="submit">Start Planning</button>                
         </header>
-        <main>
-            <section id="input">
-                <input type="text" id="city" placeholder="Where Are You Traveling?">
-                <button id="submit">Start Planning</button>                
-            </section>
-            <section id="output">                
-                <div id="forecast" class="card">
-                    <div id="forecast-label" class="label">Forecast</div>
-                    <div id="forecast-grid" class="data"></div>
-                </div>
-                <div id="air-quality" class="card">
-                    <div id="aqi-label" class="label">Air Quality</div>
-                    <div id="aqi" class="data"></div>
-                </div>
-            </section>
-        </main>
+        <section class="top">
+            <article id="forecast">
+                <div id="forecast-grid" class="data"></div>                
+                <div id="forecast-label" class="label">Weather</div>
+            </article>
+        </section>
+        <section class="left">
+            <div id="air-quality" class="card">
+                <div id="aqi" class="data"></div>
+                <div id="aqi-label" class="label">Air Quality</div>
+            </div>
+        </section>
+        <section class="bottom">
+            <div id="photo, hidden">
+                <div id="photo-label" class="label">Photo</div>
+                <div id="photo" class="data"></div>
+            </div>
+        </section>
+        <section class="right">
+            <div id="poi-label" class="label">Attractions</div>
+        </section>
         <footer>
             Data provided by OpenCage, WeatherBit, and Pixabay.
         </footer>

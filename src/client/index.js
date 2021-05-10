@@ -1,4 +1,5 @@
 import './styles/styles.scss';
+import './styles/desk-style.scss';
 import { createForecast } from './js/build.js';
 import { buttonClick } from './js/buttonClick.js';
 
