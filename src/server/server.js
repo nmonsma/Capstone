@@ -41,7 +41,7 @@ app.post('/location', async (request, response)=> {
 
     const requestData = `${request.body.location}`;    
     if (requestData=='Test, AA') { //Return 'success' for the test case
-        response.send('success')
+        response.send({'msg': 'success'})
     } else {
         //OpenCage Lat-Long
         const latLongKey = '5a30cda702464b90a8e4ff72c17f0d2a';
@@ -65,7 +65,7 @@ app.post('/forecast', async (request, response)=> {
     console.log('POST /forecast');
     
     if (request.body.lat=='360') { //Return 'success' for the test case
-        response.send('success')
+        response.send({'msg': 'success'})
     } else {
         //Weatherbit 16-Day Forecast
         const forecastKey = '497b54b009534839ba59e3d6f4f81ee9';
@@ -91,7 +91,7 @@ app.post('/aqi', async (request, response)=> {
     console.log('POST /aqi');
  
     if (request.body.lat=='360') { //Return 'success' for the test case
-        response.send('success')
+        response.send({'msg': 'success'})
     } else {   
         //Weatherbit Current Air Quality
         const airQualityKey = '497b54b009534839ba59e3d6f4f81ee9';
@@ -116,7 +116,7 @@ app.post('/advisory', async (request, response)=> {
     console.log('POST /advisory');
 
     if (request.body.country_code=='@@') { //Return 'success' for the test case
-        response.send('success')
+        response.send({'msg': 'success'})
     } else {
         //Travel-Advisory.info
         const advisoryUrl = 'https://www.travel-advisory.info/api?';
@@ -140,7 +140,7 @@ app.post('/image', async (request, response)=> {
     
     const requestData = `${request.body.location}`;
     if (requestData=='Test, AA') { //Return 'success' for the test case
-        response.send('success')
+        response.send({'msg': 'success'})
     } else {
         //Pixabay
         const imageKey = '21522846-27a00893d043b59f2a796a600';

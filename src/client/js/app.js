@@ -1,4 +1,4 @@
-import { postData } from './postdata.js';
+import { postData } from './postData.js';
 import { updateForecast } from './update.js';
 import { updatePhoto } from './update.js';
 
