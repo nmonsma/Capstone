@@ -1,6 +1,9 @@
 import { postData } from './postData.js';
 import { updateForecast } from './update.js';
 import { updatePhoto } from './update.js';
+import { updateAqi } from './update.js';
+import { updateSafety } from './update.js';
+import { updateCountdown } from './update.js';
 
 // API Urls and Keys: 
 // For the sake of not exposing the keys in the client-side code, all urls and keys are in server.js
@@ -13,6 +16,7 @@ let tripData = {
     'lat': '',
     'lng': '',
     'date': '',    
+    'countdown': ''
 }
 
 function buttonClick () {
@@ -22,7 +26,7 @@ function buttonClick () {
     
     if (cityInput!=='' && dateInput!=='') { // Error checking: make sure that users have filled both destination and date fields.
         tripData.city = cityInput;
-        tripData.date = dateInput;
+        tripData.date = dateInput;        
         //Get Latitude and Longitude using city search term from server:
         postData('http://localhost:3000/location', {'location': `${tripData.city}`})
         .then ((serverResponse)=> {
@@ -37,8 +41,8 @@ function buttonClick () {
                 'lng': `${tripData.lng}`
             })
             .then ((airQualityData)=> {
-                //Update DOM element with AQI            
-                document.getElementById('aqi').innerText=`The current Air Quality Index is: ${airQualityData.data[0].aqi}. A value over 100 means you should reconsider spending extended periods outside.`;
+                //Run Function to update with AQI data
+                updateAqi(airQualityData);                
             })
 
             //Weather Forecast from server using coordinates
@@ -47,8 +51,12 @@ function buttonClick () {
                 'lng': `${tripData.lng}`
             })
             .then ((forecastData)=> {
-                //Run function to update DOM elements with forecast data
-                updateForecast(forecastData);
+                //Run function to update forecast based on the departure date
+                tripData.countdown = updateForecast(forecastData, dateInput);
+                console.log(tripData.countdown);
+
+                //Create the countdown
+                updateCountdown(tripData.countdown); //send the countdown number created by the forecast update function
             });
 
             //Travel Advisory from server using country code
@@ -56,8 +64,7 @@ function buttonClick () {
                 'country_code': `${tripData.country}`
             })
             .then ((advisoryData)=> {
-                //Update DOM elements with advisory data
-                document.getElementById('advisory').innerText=advisoryData.data[`${tripData.country}`].advisory.message;
+                updateSafety(advisoryData, tripData.country);
             });
 
         });
@@ -68,6 +75,7 @@ function buttonClick () {
             //Use function to update DOM element with image URL
             updatePhoto(serverResponse.hits[0].largeImageURL);
         });
+
     } else {
         alert('Please enter both a destination and a date.');
         return('no data');

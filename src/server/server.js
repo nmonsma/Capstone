@@ -53,8 +53,7 @@ app.post('/location', async (request, response)=> {
         try {
             const returnedData = await openCageLocation.json()
             response.send(returnedData)
-        } catch(error) {
-            
+        } catch(error) {            
             console.log(error)
         }
     }
