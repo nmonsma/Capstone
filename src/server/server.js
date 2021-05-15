@@ -11,8 +11,6 @@ const app = express();
 //Configure the app to use Express for these:
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-const cors = require('cors');
-app.use(cors());
 const dotenv = require('dotenv');
 dotenv.config();
 const fetch = require('node-fetch');
