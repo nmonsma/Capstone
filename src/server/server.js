@@ -20,6 +20,9 @@ const fetch = require('node-fetch');
 
 /*Global Variables*/
 let projectData = {};
+const openCageKey = `${process.env.openCageKey}`;
+const weatherBitKey = `${process.env.weatherBitKey}`;
+const pixabayKey = `${process.env.pixabayKey}`;
     
 /*Spin up the Server*/
 app.use(express.static('dist'))
@@ -66,7 +69,7 @@ app.post('/location', async (request, response)=> {
         response.send({'msg': 'success'})
     } else {
         //OpenCage Lat-Long
-        const latLongKey = '5a30cda702464b90a8e4ff72c17f0d2a';
+        const latLongKey = openCageKey;
         const latLongUrl = 'https://api.opencagedata.com/geocode/v1/json?';
         //https://opencagedata.com/api
         //https://api.opencagedata.com/geocode/v1/json?q=PLACENAME&key=5a30cda702464b90a8e4ff72c17f0d2a
@@ -89,7 +92,7 @@ app.post('/forecast', async (request, response)=> {
         response.send({'msg': 'success'})
     } else {
         //Weatherbit 16-Day Forecast
-        const forecastKey = '497b54b009534839ba59e3d6f4f81ee9';
+        const forecastKey = weatherBitKey;
         const forecastUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?';
         //https://www.weatherbit.io/api/weather-forecast-16-day
         //https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
@@ -115,7 +118,7 @@ app.post('/aqi', async (request, response)=> {
         response.send({'msg': 'success'})
     } else {   
         //Weatherbit Current Air Quality
-        const airQualityKey = '497b54b009534839ba59e3d6f4f81ee9';
+        const airQualityKey = weatherBitKey;
         const airQualityUrl = 'https://api.weatherbit.io/v2.0/current/airquality?';
         //https://www.weatherbit.io/api/airquality-current
         //https://api.weatherbit.io/v2.0/current/airquality?lat=35.7721&lon=-78.63861&key=API_KEY
@@ -164,7 +167,7 @@ app.post('/image', async (request, response)=> {
         response.send({'msg': 'success'})
     } else {
         //Pixabay
-        const imageKey = '21522846-27a00893d043b59f2a796a600';
+        const imageKey = pixabayKey;
         const imageUrl = 'https://pixabay.com/api/?';
         const searchTerm = encodeURIComponent(requestData); //Conver the request search term to a URI appropriate to be sent in the URL
         const externalResponse = await fetch (`${imageUrl}key=${imageKey}&q=${searchTerm}&image_type=photo`); // Make the fetch request to pixabay.
