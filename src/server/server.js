@@ -1,4 +1,6 @@
 //TODO: Hide API keys from github using .env
+const apiUrl = `***`; //TODO: add URL
+const apiKey = `${process.env.API_KEY}`;
 
 /*Express*/
 var path = require('path');
@@ -17,9 +19,8 @@ const fetch = require('node-fetch');
 //const location = require('./externalAPIs/location.js'); //TODO: Figure out how to inclue the external api calls in other files. Probably have the function in those files, but the app.post here.
 
 /*Global Variables*/
-const apiUrl = `***`; //TODO: add URL
-const apiKey = `${process.env.API_KEY}`;
-
+let projectData = {};
+    
 /*Spin up the Server*/
 app.use(express.static('dist'))
 
@@ -33,6 +34,27 @@ app.get('/', function (req, res) {
     console.log('GET /')
     res.sendFile('dist/index.html')    
 })
+
+/* Routes to add and retrieve data from the server object */
+app.get('/load', sendData);
+    function sendData (request, response) {
+        response.send(projectData);
+    }
+    
+app.post('/save', addData);
+    function addData (request, response) {
+        newData = { 
+            'city': `${request.body.city}`,
+            'country': `${request.body.country}`,
+            'lat': `${request.body.lat}`,
+            'lng': `${request.body.lng}`,
+            'date': `${request.body.date}`,    
+            'countdown': `${request.body.countdown}`
+        }
+        projectData = newData;
+        response.send({'status':'success'});
+    }
+
 
 /*External API calls*/
 //Location
@@ -169,24 +191,3 @@ app.post('/image', async (request, response)=> {
         }               
     }
 })
-
-/* Server Storage and Retrieval */
-
-// app.get('/list',listSaved);
-//     function listSaved (request, response) {
-//         response.send(tripList);
-//     }
-    
-// app.get('/open', openTrip);
-//     function openTrip (request, response) {
-//         response.send(tripList);
-//     }
-
-// app.post('/save', addData);
-//     function addData (request, response) {
-//         newData = {  //This function assumes that the request will consist of an object with properties named "temperature", "date", and "userResponse".
-//             ...
-//         }
-//         tripList = newData; 
-//         response.send(newData);
-//     }

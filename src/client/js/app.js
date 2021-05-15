@@ -19,11 +19,30 @@ let tripData = {
     'countdown': ''
 }
 
+function clearCards () {
+    document.getElementById('right').classList.add('hidden');
+    document.getElementById('top').classList.add('hidden');
+    document.getElementById('left').classList.add('hidden');
+    document.getElementById('bottom').classList.add('hidden');
+}
+
+const loadData = async ()=> {
+    const request = await fetch('http://localhost:3000/load'); //This get route only returns the last item in the server variable.
+    try {
+        const returnedData = await request.json();
+        document.getElementById('city').value = returnedData.city;
+        document.getElementById('date').value = returnedData.date;
+    }catch(error){
+        console.log("error", error);
+    }
+}
+
 function buttonClick () {
     //Assign values to the tripData object using information provided:
+    clearCards();
     const cityInput = document.getElementById('city').value;
     const dateInput = document.getElementById('date').value;
-    
+
     if (cityInput!=='' && dateInput!=='') { // Error checking: make sure that users have filled both destination and date fields.
         tripData.city = cityInput;
         tripData.date = dateInput;        
@@ -53,7 +72,10 @@ function buttonClick () {
             .then ((forecastData)=> {
                 //Run function to update forecast based on the departure date
                 tripData.countdown = updateForecast(forecastData, dateInput);
-                console.log(tripData.countdown);
+
+                //Now that all the pieces of the tripData object have been completed,
+                //send the object to the server:
+                postData('http://localhost:3000/save', tripData);
 
                 //Create the countdown
                 updateCountdown(tripData.countdown); //send the countdown number created by the forecast update function
@@ -73,13 +95,16 @@ function buttonClick () {
         postData('http://localhost:3000/image', {'location': `${tripData.city}`}) // Use the server post route to get coordinates for the search term.
         .then ((serverResponse)=> {
             //Use function to update DOM element with image URL
-            updatePhoto(serverResponse.hits[0].largeImageURL);
+            updatePhoto(serverResponse.hits[0].largeImageURL);   
         });
-
     } else {
         alert('Please enter both a destination and a date.');
         return('no data');
     }
 }
 
-export { buttonClick }
+export { 
+    buttonClick,
+    clearCards,
+    loadData
+}
